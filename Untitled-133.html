@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Player de Vídeo</title>
+<style>
+  /* Reset e estilo do body */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+  }
+
+  /* Video ocupa toda a tela do iframe */
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Botão flutuante moderno */
+  #playPauseBtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  #playPauseBtn:hover {
+    background: rgba(0,0,0,0.8);
+    transform: scale(1.05);
+  }
+
+  /* Ícone do botão (opcional) */
+  #playPauseBtn::before {
+    content: "⏸"; /* Inicial: Pausar */
+    margin-right: 8px;
+  }
+
+  /* Alterna ícone quando tocando/pausado */
+  .playing::before {
+    content: "⏸"; /* Pausar */
+  }
+
+  .paused::before {
+    content: "▶"; /* Play */
+  }
+</style>
+</head>
+<body>
+
+<video id="video" autoplay muted loop playsinline>
+  <source src="https://raw.githubusercontent.com/Pedrin-sys/meus-videos/main/NEW_D_-_PLATAFORMA_HÍBRIDA%20(2).mp4" type="video/mp4">
+  Seu navegador não suporta vídeo HTML5.
+</video>
+
+<button id="playPauseBtn" class="playing">Pausar</button>
+
+<script>
+  const video = document.getElementById('video');
+  const btn = document.getElementById('playPauseBtn');
+
+  btn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      btn.textContent = 'Pausar';
+      btn.classList.remove('paused');
+      btn.classList.add('playing');
+    } else {
+      video.pause();
+      btn.textContent = 'Tocar';
+      btn.classList.remove('playing');
+      btn.classList.add('paused');
+    }
+  });
+</script>
+
+</body>
+</html>
